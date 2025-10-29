@@ -80,15 +80,16 @@ class DirectoryMonitorTests: XCTestCase {
         
         // Wait asynchronously for the expectations to fullfil.
         if expectedChangeOrigin != nil {
-            wait(for: [updated], timeout: 5.0)
+            wait(for: [updated], timeout: 1.5)
         }
         
         if isTreeReloadExpected {
-            wait(for: [reloaded], timeout: 5.0)
+            wait(for: [reloaded], timeout: 1.5)
         }
     }
     
-    /// - Warning: Please do not overuse this method as it takes 10s of wait time and can potentially slow down running the test suite.
+    /// - Warning: Please do not overuse this method as it takes 2 seconds of
+    /// wait time per invocation, and can potentially slow down the test suite.
     private func monitorNoUpdates(url: URL, testBlock: @escaping () throws -> Void, file: StaticString = #filePath, line: UInt = #line) throws {
         let monitor = try DirectoryMonitor(root: url) { rootURL, url in
             XCTFail("Did produce file update event for a hidden file", file: file, line: line)
@@ -104,12 +105,15 @@ class DirectoryMonitorTests: XCTestCase {
             try? testBlock()
         }
         
-        // For the test purposes we assume a file change event will be delivered within generous 10 seconds.
-        DispatchQueue.global().asyncAfter(deadline: .now() + 10) {
+        // For the test purposes we assume a file change event will be delivered within 1.5 seconds.
+        // This also aligns with the `monitor` method above, that ensures that file change events
+        // in tests are received within 1.5 seconds. If this works too eagerly, then the other tests
+        // in this suite will fail.
+        DispatchQueue.global().asyncAfter(deadline: .now() + 1.5) {
             didNotTriggerUpdateForHiddenFile.fulfill()
         }
         
-        wait(for: [didNotTriggerUpdateForHiddenFile], timeout: 20)        
+        wait(for: [didNotTriggerUpdateForHiddenFile], timeout: 2)
     }
     #endif
     
