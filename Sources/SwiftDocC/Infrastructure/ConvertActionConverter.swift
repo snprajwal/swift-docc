@@ -129,7 +129,9 @@ package enum ConvertActionConverter {
                         
                         if emitDigest {
                             let nodeLinkSummaries = entity.externallyLinkableElementSummaries(context: context, renderNode: renderNode)
-                            let nodeIndexingRecords = try renderNode.indexingRecords(onPage: identifier)
+                            var indexingProblems = [Problem]()
+                            let nodeIndexingRecords = renderNode.indexingRecords(onPage: identifier, problems: &indexingProblems)
+                            context.diagnosticEngine.emit(indexingProblems)
                             
                             supplementaryRenderInfo.assets.merge(renderNode.assetReferences, uniquingKeysWith: +)
                             supplementaryRenderInfo.linkSummaries.append(contentsOf: nodeLinkSummaries)

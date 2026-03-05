@@ -10,6 +10,7 @@
 
 import Foundation
 
+@available(*, deprecated, message: "This error type is no longer used, and will be removed in Swift 6.4")
 public enum IndexingError: DescribedError {
     /**
      A page or other piece of documentation doesn't have a title, so it can't

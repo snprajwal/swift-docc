@@ -34,7 +34,7 @@ extension RenderNode {
 }
 
 extension RenderNode: Indexable {
-    func topLevelIndexingRecord() throws -> IndexingRecord {
+    func topLevelIndexingRecord(problems: inout [Problem]) -> IndexingRecord? {
         let kind: IndexingRecord.Kind
         switch self.kind {
         case .tutorial:
@@ -50,8 +50,15 @@ extension RenderNode: Indexable {
         }
         
         guard let title = metadata.title, !title.isEmpty else {
-            // We at least need a title for a search result.
-            throw IndexingError.missingTitle(identifier)
+            // Nodes without a title are erroneous entries in the symbol graph.
+            // A search result cannot be constructed without a title, meaning that
+            // an indexing record for this node is useless. The node is skipped.
+            problems.append(Problem(diagnostic: Diagnostic(
+                severity: .warning,
+                identifier: "org.swift.docc.RenderNodeWithoutTitle",
+                summary: "\(identifier.absoluteString.singleQuoted) has an empty title, and cannot have a usable search result"
+            )))
+            return nil
         }
         
         let summaryParagraph: RenderBlockContent?
@@ -68,20 +75,34 @@ extension RenderNode: Indexable {
         return IndexingRecord(kind: kind, location: .topLevelPage(identifier), title: title, summary: summary, headings: self.headings, rawIndexableTextContent: self.rawIndexableTextContent, platforms: metadata.platforms)
     }
     
+    @available(*, deprecated, message: "This method will be removed in Swift 6.4, use ``RenderNode.indexingRecords(onPage:problems:)`` instead")
     public func indexingRecords(onPage page: ResolvedTopicReference) throws -> [IndexingRecord] {
+        var problems = [Problem]()
+        let records = indexingRecords(onPage: page, problems: &problems)
+        // A call to ``RenderNode.indexingRecords(onPage:)`` can have exactly one possible problem,
+        // which is that the node does not have a title to use for a search result. For backwards
+        // compatibility, we throw the original error type if the `problems` array is non-nil.
+        if !problems.isEmpty {
+            throw IndexingError.missingTitle(page)
+        }
+
+        return records
+    }
+
+    public func indexingRecords(onPage page: ResolvedTopicReference, problems: inout [Problem]) -> [IndexingRecord] {
         switch self.kind {
         case .tutorial:
-            let sectionRecords = try self.sections
+            let sectionRecords = self.sections
                 .flatMap { section -> [IndexingRecord] in
                     guard let sectionsSection = section as? TutorialSectionsRenderSection else {
                         return []
                     }
-                    return try sectionsSection.indexingRecords(onPage: page, references: references)
+                    return sectionsSection.indexingRecords(onPage: page, references: references)
             }
             
-            return [try topLevelIndexingRecord()] + sectionRecords
+            return [topLevelIndexingRecord(problems: &problems)].compactMap({ $0 }) + sectionRecords
         default:
-            return [try topLevelIndexingRecord()]
+            return [topLevelIndexingRecord(problems: &problems)].compactMap({ $0 })
         }
     }
 }

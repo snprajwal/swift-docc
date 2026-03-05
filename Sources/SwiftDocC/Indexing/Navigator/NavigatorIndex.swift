@@ -713,7 +713,14 @@ extension NavigatorIndex {
             }
             
             guard let title = usePageTitle ? renderNode.metadata.title : renderNode.navigatorTitle() else {
-                throw Error.missingTitle(description: "\(renderNode.identifier.absoluteString.singleQuoted) has an empty title and so can't have a usable entry in the index.")
+                // Nodes without a title are erroneous entries in the symbol graph.
+                // An index entry cannot be constructed without a title, so the node is skipped.
+                self.problems.append(Problem(diagnostic: Diagnostic(
+                    severity: .warning,
+                    identifier: "org.swift.docc.index",
+                    summary: "\(renderNode.identifier.absoluteString.singleQuoted) has an empty title, and cannot have a usable entry in the index"
+                )))
+                return nil
             }
             
             // Get the identifier path
