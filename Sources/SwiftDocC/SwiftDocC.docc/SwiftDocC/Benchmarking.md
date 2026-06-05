@@ -2,11 +2,13 @@
 
 Produce performance metrics to improve the compilation pipeline and track regressions.
 
+## Overview
+
 DocC has metric logging built right in; it is disabled by default but it can be enabled easily via an environment variable or when running the tools in the `bin/benchmark` Swift package.
 
 When you are working on a PR to add a feature or fix a bug you should evaluate the performance cost of your code changes.
 
-## Running a benchmark
+### Running a benchmark
 
 To benchmark the `convert` command with a given documentation catalog `MyFramework.docc` run:
 
@@ -32,7 +34,7 @@ swift run --package-path bin/benchmark benchmark measure --base-benchmark benchm
 
 This will only gather new metrics for the local changes, as you iterate, but will still compare the new metrics against the results from the other commit and output the comparison of the two benchmark results.   
 
-## Adding a Custom Metric
+### Adding a Custom Metric
 
 When you work on a particular feature and you want to track a given custom metric you can temporarily add it to the log.
 

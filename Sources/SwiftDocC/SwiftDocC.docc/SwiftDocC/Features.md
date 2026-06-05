@@ -2,9 +2,11 @@
 
 Add features to DocC and indicate the feature's availability to other tools.
 
+## Overview
+
 Over time as we develop new features in DocC we also add, update, or remove the flags and options that the `docc` executable accepts. So that other tools can know what flags and options a certain version of the `docc` executable accepts, we add new entries in the "features.json" file.
 
-## Adding a New Feature
+### Adding a New Feature
 
 When adding a new collection of command line flags or options to the `docc` executable that relate to some new feature, add a new entry to the "feature.json" file that name the new feature. For example:
 
@@ -23,7 +25,7 @@ When adding a new collection of command line flags or options to the `docc` exec
 
 > Note: Use a single entry for multiple related command line flags and options if they are all added in the same build.
 
-## Checking what Features DocC Supports
+### Checking what Features DocC Supports
 
 In a Swift toolchain, the `docc` executable is installed at `usr/bin/docc`. In the same toolchain, the "features.json" file is installed at `usr/share/docc/features.json`.
 

@@ -22,7 +22,7 @@ doc://com.example/path/to/documentation/page#optional-heading
       bundle ID     path in docs hierarchy    heading name 
 ```
 
-## Resolving a Documentation Link
+### Resolving a Documentation Link
 
 To make authored documentation links easier to write and easier to read in plain text format all authored documentation links are relative links. The symbol links in documentation extension headers are written relative to the scope of modules. All other authored documentation links are written relative to the page where the link is written. 
 
@@ -68,10 +68,10 @@ extension B {
 }
 ```
 
-## Resolving Links to Other Documentation Sources
+### Resolving Links to Other Documentation Sources
 
-If a ``DocumentationContext`` is configured with one or more ``DocumentationContext/externalDocumentationSources`` it is capable of resolving links general documentation links via that ``ExternalDocumentationSource``. Links to external documentation sources need to be written with a bundle ID in the URI to identify which external resolver should handle the request.
+If a ``DocumentationContext`` is configured with one or more external documentation sources it is capable of resolving links general documentation links via that ``ExternalDocumentationSource``. Links to external documentation sources need to be written with a bundle ID in the URI to identify which external resolver should handle the request.
 
 If the other documentation source represents DocC content for another module or project, it is preferred to use `LinkResolver/dependencyArchives` instead. This provides richer diagnostics with solutions and supports symbol links to external symbols. 
 
-<!-- Copyright (c) 2022-2024 Apple Inc and the Swift Project authors. All Rights Reserved. -->
+<!-- Copyright (c) 2022-2026 Apple Inc and the Swift Project authors. All Rights Reserved. -->

@@ -1,5 +1,7 @@
 # ``SwiftDocC/RenderInlineContent``
 
+The inline elements that make up rich text in a render node.
+
 ## Topics
 
 ### Inline content types

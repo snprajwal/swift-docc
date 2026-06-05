@@ -1,5 +1,7 @@
 # Utility APIs
 
+General-purpose helpers used throughout SwiftDocC for error reporting, language identification, URL validation, and feature flagging.
+
 ## Topics
 
 ### Errors

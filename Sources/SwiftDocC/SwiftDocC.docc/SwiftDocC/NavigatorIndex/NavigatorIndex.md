@@ -1,5 +1,7 @@
 # ``SwiftDocC/NavigatorIndex``
 
+A navigator index built from compiled documentation that supports fast lookup and tree-based navigation.
+
 ## Topics
 
 ### Creating an index
