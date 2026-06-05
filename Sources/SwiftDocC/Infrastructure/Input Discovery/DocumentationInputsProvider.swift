@@ -29,29 +29,6 @@ extension DocumentationContext {
     ///  ``DocumentationBundle/customFooter``     | ``DocumentationBundleFileTypes/isCustomFooter(_:)``
     ///  ``DocumentationBundle/customFavicon``    | ``DocumentationBundleFileTypes/isCustomFavicon(_:)``
     ///  ``DocumentationBundle/miscResourceURLs`` | Any file not already matched above.
-    ///
-    /// ## Topics
-    ///
-    /// ### Catalog discovery
-    ///
-    /// Discover documentation catalogs and create documentation build inputs from the discovered catalog's content.
-    ///
-    /// - ``findCatalog(startingPoint:allowArbitraryCatalogDirectories:)``
-    /// - ``makeInputs(contentOf:options:)``
-    ///
-    /// ### Input discovery
-    ///
-    /// Discover documentation build inputs from a mix of discovered documentation catalogs and other command line options.
-    ///
-    /// - ``inputsAndDataProvider(startingPoint:allowArbitraryCatalogDirectories:options:)``
-    ///
-    /// ### Errors
-    ///
-    /// Errors that the inputs provider can raise while validating the discovered inputs.
-    ///
-    /// - ``MultipleCatalogsError``
-    /// - ``NotEnoughInformationError``
-    /// - ``InputsFromSymbolGraphError``
     package struct InputsProvider {
         /// The file manager that the provider uses to read file and directory contents from the file system.
         private var fileManager: any FileManagerProtocol
