@@ -61,7 +61,7 @@ package protocol FileManagerProtocol: DataProvider {
     ///   - location: The location to create the file
     ///   - contents: The data to write to the file.
     ///
-    /// - Note: This method doesn't exist on ``FileManager``.
+    /// - Note: This method doesn't exist on `FileManager`.
     ///         There is a similar looking method but it doesn't provide information about potential errors.
     ///
     /// - Throws: If the file couldn't be created with the specified contents.
@@ -72,7 +72,7 @@ package protocol FileManagerProtocol: DataProvider {
     /// - Parameters:
     ///   - url: The location to create the file
     ///
-    /// - Note: This method doesn't exist on ``FileManager``.
+    /// - Note: This method doesn't exist on `FileManager`.
     ///         There is a similar looking method but it doesn't provide information about potential errors.
     ///
     /// - Throws: If the file couldn't be read.
