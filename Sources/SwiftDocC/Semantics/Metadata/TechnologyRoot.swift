@@ -34,10 +34,6 @@ public import Markdown
 /// The following items can include a technology root element:
 ///
 /// - ``Metadata``
-///
-/// ## See Also
-///
-/// - <doc:formatting-your-documentation-content>
 public final class TechnologyRoot: Semantic, AutomaticDirectiveConvertible {
     public static let introducedVersion = "5.5"
     public let originalMarkup: BlockDirective

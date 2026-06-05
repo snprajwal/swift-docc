@@ -13,7 +13,7 @@ public import Markdown
 
 extension Semantic.Analyses {
     /**
-     Checks a parent directive for the presence of exactly one child directive to be converted to a type ``SemanticAnalysis/Result``. If so, return that child and the remainder.
+     Checks a parent directive for the presence of exactly one child directive to be converted. If so, return that child and the remainder.
      */
     public struct HasExactlyOne<Parent: Semantic & DirectiveConvertible, Child: Semantic & DirectiveConvertible> {
         let severityIfNotFound: DiagnosticSeverity?
@@ -105,7 +105,7 @@ extension Semantic.Analyses {
         return (childType.init(from: candidate, source: source, for: bundle, featureFlags: featureFlags, diagnostics: &diagnostics), MarkupContainer(remainder))
     }
     
-    /// Checks a parent directive for the presence of exactly one of two child directives---but not both---to be converted to a type ``SemanticAnalysis/Result``. If so, return that child and the remainder.
+    /// Checks a parent directive for the presence of exactly one of two child directives---but not both---to be converted. If so, return that child and the remainder.
     public struct HasExactlyOneOf<Parent: Semantic & DirectiveConvertible, Child1: Semantic & DirectiveConvertible, Child2: Semantic & DirectiveConvertible> {
         let severityIfNotFound: DiagnosticSeverity?
         let featureFlags: FeatureFlags

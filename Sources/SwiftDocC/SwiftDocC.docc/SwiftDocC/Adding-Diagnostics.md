@@ -137,7 +137,7 @@ it can save the developer a lot of time if they can pick and choose from a list 
 That said, don't overwhelm the developer with far fetched or irrelevant solutions. 
 
 If the developer specified an unsupported value but DocC knows the list of all possible values (for example, the names of all image assets in the catalog or the names of all top-level symbols). 
-Use ``NearMiss.bestMatches(for:against:)`` to both filter and order the long list of possibilities based on how closely they match what the developer wrote.
+Use `NearMiss.bestMatches(for:against:)` to both filter and order the long list of possibilities based on how closely they match what the developer wrote.
 
 Write your solution's ``Solution/summary`` as a verb phrase that describes the action that the developer should take to address the issue. 
 For example:

@@ -29,11 +29,11 @@ Some documentation is authored with the expectation that it's always built with 
 For example, documentation that's organized based on the experimental overloaded symbol presentation flag can have a rather different organization without that flag,
 making it harder for readers to navigate the documentation and find related API. 
 
-If you add a feature flag like this, you should also add a corresponding flag to the ``DocumentationBundle/Info/BundleFeatureFlags`` type, 
+If you add a feature flag like this, you should also add a corresponding flag to the `BundleFeatureFlags` type (defined alongside `DocumentationBundle.Info`),
 so that flag can be specified from a documentation catalog's Info.plist.
 The value from the catalog's Info.plist overrides any value that the developer may specify using a command line flag. 
 
-The ``DocumentationContext`` calls the ``FeatureFlags/loadFlagsFromBundle(_:)`` method to override the feature flags it got from the convert action with those decoded from the Info.plist.
+The ``DocumentationContext`` calls the `FeatureFlags.loadFlagsFromBundle(_:)` method to override the feature flags it got from the convert action with those decoded from the Info.plist.
 Update this method to ensure that your new flag properly overrides the values from the convert action.
 
 <!-- Copyright (c) 2024-2026 Apple Inc and the Swift Project authors. All Rights Reserved. -->

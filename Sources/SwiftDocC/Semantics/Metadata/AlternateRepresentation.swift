@@ -29,7 +29,6 @@ public import Markdown
 /// }
 /// ```
 /// If you prefer, you can wrap the symbol link in a set of double backticks (\`\`), or use any other supported syntax for linking to symbols.
-/// For more information about linking to symbols, see <doc:linking-to-symbols-and-other-content>.
 ///
 /// This provides a hint to the renderer as to the alternate language representations for the current symbol.
 /// The renderer may use this hint to provide a link to these alternate symbols.

@@ -36,7 +36,7 @@ private import SymbolKit
 /// A named slice automatically ends at the start of the next named slice, without an explicit `snippet.end` annotation.
 ///
 /// If the referenced snippet includes annotated slices, you can limit the embedded code example to a certain line range by specifying a `slice` name.
-/// By default, the embedded code example includes the full snippet. For more information, see <doc:adding-code-snippets-to-your-content#Slice-up-your-snippet-to-break-it-up-in-your-content>.
+/// By default, the embedded code example includes the full snippet.
 public final class Snippet: Semantic, AutomaticDirectiveConvertible {
     public static let introducedVersion = "5.7"
     public let originalMarkup: BlockDirective

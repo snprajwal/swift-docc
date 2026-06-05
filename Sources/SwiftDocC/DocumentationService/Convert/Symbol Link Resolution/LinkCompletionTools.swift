@@ -155,10 +155,7 @@ public enum LinkCompletionTools {
     /// > It's the callers responsibility to create symbol information that matches what the compilers emit in symbol graph files.
     /// > If there are mismatches, DocC may suggest disambiguation that won't resolve with the real compiler emitted symbol data.
     public struct SymbolInformation {
-        /// The kind of symbol, for example `"class"` or `"func.op`.
-        ///
-        /// ## See Also
-        /// - ``/SymbolKit/SymbolGraph/Symbol/KindIdentifier``
+        /// The kind of symbol, for example `"class"` or `"func.op`. The value should match a kind identifier from `SymbolGraph.Symbol.KindIdentifier`.
         public var kind: String
         /// A hash of the symbol's unique identifier.
         ///

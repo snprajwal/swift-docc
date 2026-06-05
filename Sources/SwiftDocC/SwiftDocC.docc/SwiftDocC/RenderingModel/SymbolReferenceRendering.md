@@ -43,7 +43,6 @@ A documentation abstract is represented by a ``AbstractSection``, a section list
 - ``RenderAttribute``
 - ``ParameterRenderSection``
 - ``ParametersRenderSection``
-- ``TitleStyle``
 - ``PossibleValuesRenderSection``
 - ``PropertiesRenderSection``
 - ``RenderProperty``

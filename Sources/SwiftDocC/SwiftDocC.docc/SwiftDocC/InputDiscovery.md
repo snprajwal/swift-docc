@@ -68,7 +68,6 @@ Use a ``DataProvider`` that the ``DocumentationContext/InputsProvider`` returned
 ### Documentation Bundle
 
 - ``DocumentationBundle``
-- ``BundleIdentifier``
 - ``DocumentationBundleFileTypes``
 
 ### Bundle Assets

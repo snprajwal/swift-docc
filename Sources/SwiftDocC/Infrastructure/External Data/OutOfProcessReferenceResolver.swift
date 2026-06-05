@@ -57,7 +57,7 @@ private import SymbolKit
 ///
 /// Because the ``ConvertService`` messages are _implicitly_ tied to these outdated—and no longer recommended—request and response types, the richness of its responses is limited.
 ///
-/// - Note: when interacting with a ``ConvertService`` your service also needs to handle "asset" requests (``OutOfProcessReferenceResolver/Request/asset(_:)`` and responses that (``OutOfProcessReferenceResolver/Response/asset(_:)``) that link resolver executables don't need to handle.
+/// - Note: when interacting with a ``ConvertService`` your service also needs to handle "asset" requests (`Request.asset(_:)` and responses that (`Response.asset(_:)`) that link resolver executables don't need to handle.
 ///
 /// ## Topics
 ///
@@ -81,8 +81,8 @@ private import SymbolKit
 /// - ``Response``
 ///
 /// ## See Also
-/// - ``DocumentationContext/externalDocumentationSources``
-/// - ``DocumentationContext/globalExternalSymbolResolver``
+/// - ``ExternalDocumentationSource``
+/// - ``GlobalExternalSymbolResolver``
 public class OutOfProcessReferenceResolver: ExternalDocumentationSource, GlobalExternalSymbolResolver {
     private var implementation: any _Implementation
     
