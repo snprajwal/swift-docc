@@ -50,7 +50,7 @@ import Foundation
 /// - ``kind``
 /// - ``sections``
 /// - ``references``
-/// - ``hierarchy``
+/// - ``hierarchyVariants``
 /// - ``metadata``
 ///
 /// ### Reference Documentation Data

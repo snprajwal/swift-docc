@@ -34,7 +34,7 @@ import DocCCommon
 ///
 /// - ``info``
 /// - ``displayName``
-/// - ``identifier``
+/// - ``id``
 public struct DocumentationBundle {
     public enum PropertyListError: DescribedError {
         case invalidVersionString(String)
