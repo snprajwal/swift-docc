@@ -627,7 +627,9 @@ extension NavigatorIndex {
         }
         
         /// Index a single render `ExternalRenderNode`.
-        /// - Parameter renderNode: The render node to be indexed.
+        /// - Parameters:
+        ///   - renderNode: The render node to be indexed.
+        ///   - ignoringLanguage: If `true`, skip indexing of language-variant entries for this node.
         package func index(renderNode: ExternalRenderNode, ignoringLanguage: Bool = false) throws {
             let navigatorRenderNode = NavigatorExternalRenderNode(renderNode: renderNode)
             _ = try index(navigatorRenderNode, traits: nil, isExternal: true)

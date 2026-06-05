@@ -209,8 +209,8 @@ public class DocumentationContext {
     /// Initializes a documentation context with a given `bundle`.
     ///
     /// - Parameters:
-    ///   - bundle: The bundle to register with the context.
-    ///   - fileManager: The file manager that the context uses to read files from the bundle.
+    ///   - inputs: The bundle to register with the context.
+    ///   - dataProvider: The data provider that the context uses to read files from the bundle.
     ///   - diagnosticEngine: The pre-configured engine that will collect diagnostics encountered during compilation.
     ///   - configuration: A collection of configuration for the created context.
     /// - Throws: If an error is encountered while registering a documentation bundle.
