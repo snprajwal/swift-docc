@@ -74,4 +74,12 @@ If a ``DocumentationContext`` is configured with one or more external documentat
 
 If the other documentation source represents DocC content for another module or project, it is preferred to use `LinkResolver/dependencyArchives` instead. This provides richer diagnostics with solutions and supports symbol links to external symbols. 
 
+## Topics
+
+### Link Types
+
+- ``AnyLink``
+- ``Markdown/SymbolLink``
+- ``Markdown/Link``
+
 <!-- Copyright (c) 2022-2026 Apple Inc and the Swift Project authors. All Rights Reserved. -->
