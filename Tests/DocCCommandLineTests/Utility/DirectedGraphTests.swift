@@ -1,7 +1,7 @@
 /*
  This source file is part of the Swift.org open source project
 
- Copyright (c) 2024-2025 Apple Inc. and the Swift project authors
+ Copyright (c) 2024-2026 Apple Inc. and the Swift project authors
  Licensed under Apache License v2.0 with Runtime Library Exception
 
  See https://swift.org/LICENSE.txt for license information
@@ -434,6 +434,34 @@ struct DirectedGraphTests {
             [2,3,4,5]
             // The other cycles are rotations of the first one.
         ])
+    }
+
+    @Test
+    func findsAllNearestMatchingNodes() {
+        //   ┌─▶2
+        //   │
+        // 1─┼─▶3
+        //   │
+        //   └─▶4──▶5
+        let graph = DirectedGraph(edges: [
+            1: [2, 3, 4],
+            4: [5],
+        ])
+
+        // The starting point itself is a match at distance zero.
+        #expect(graph.nearestNodes(from: 1, matching: { $0 == 1 }) == [1])
+
+        // Both 2 and 3 are the same shortest distance away, so both are returned.
+        #expect(graph.nearestNodes(from: 1, matching: [2, 3, 5].contains) == [2, 3])
+
+        // A nearer match wins over a farther one.
+        #expect(graph.nearestNodes(from: 1, matching: [4, 5].contains) == [4])
+
+        // The nearest match is more than one edge away.
+        #expect(graph.nearestNodes(from: 1, matching: { $0 == 5 }) == [5])
+
+        // Nothing matches.
+        #expect(graph.nearestNodes(from: 1, matching: { $0 == 99 }) == [])
     }
 }
 

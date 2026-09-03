@@ -1,7 +1,7 @@
 /*
  This source file is part of the Swift.org open source project
 
- Copyright (c) 2024 Apple Inc. and the Swift project authors
+ Copyright (c) 2024-2026 Apple Inc. and the Swift project authors
  Licensed under Apache License v2.0 with Runtime Library Exception
 
  See https://swift.org/LICENSE.txt for license information
@@ -17,6 +17,25 @@ extension DirectedGraph {
     /// Returns a sequence that traverses the graph in depth first order from a given element, without visiting the same node more than once.
     func depthFirstSearch(from startingPoint: Node) -> some Sequence<Node> {
         IteratorSequence(GraphNodeIterator(from: startingPoint, traversal: .depthFirst, in: self))
+    }
+
+    /// Returns every node that matches the given predicate at the shortest distance from a given element.
+    ///
+    /// - Parameters:
+    ///   - startingPoint: The element to measure distances from.
+    ///   - predicate: A closure that indicates whether a node is a match.
+    /// - Returns: The set of matching nodes at the shortest distance from `startingPoint`.
+    func nearestNodes(from startingPoint: Node, matching predicate: (Node) -> Bool) -> Set<Node> {
+        var nodes = [startingPoint]
+        var seen: Set<Node> = [startingPoint]
+        while !nodes.isEmpty {
+            let matches = nodes.filter(predicate)
+            if !matches.isEmpty {
+                return Set(matches)
+            }
+            nodes = nodes.flatMap { neighbors(of: $0) }.filter { seen.insert($0).inserted }
+        }
+        return []
     }
 }
 
